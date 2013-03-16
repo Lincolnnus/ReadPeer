@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C2034" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="R2F-ud-9VX">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+    </dependencies>
+    <scenes>
+        <!--Detail View Controller-->
+        <scene sceneID="8Zh-zG-990">
+            <objects>
+                <viewController id="ye6-kl-cpM" customClass="DetailViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="e5j-s5-YjU">
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="kZ6-Nb-QM1">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="s7m-LU-Bnl"/>
+                                    <barButtonItem title="Camera" id="iCf-A8-IrM">
+                                        <connections>
+                                            <action selector="takePhoto:" destination="ye6-kl-cpM" id="7J0-QV-wQY"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Gallery" id="N5q-Gh-eJo">
+                                        <connections>
+                                            <action selector="loadPhoto:" destination="ye6-kl-cpM" id="iwa-fe-bQy"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <view contentMode="scaleToFill" id="Elr-Jm-Se9">
+                                <rect key="frame" x="0.0" y="44" width="768" height="960"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <connections>
+                        <outlet property="bookView" destination="Elr-Jm-Se9" id="u1f-SW-ceH"/>
+                        <outlet property="toolbar" destination="kZ6-Nb-QM1" id="KlA-xb-Ri3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YIk-VQ-Wre" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2307" y="391"/>
+        </scene>
+        <!--Master View Controller - All Annotations-->
+        <scene sceneID="SOq-2F-Rv5">
+            <objects>
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="SQg-AO-jEM" customClass="MasterViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="1I8-CM-gQE">
+                        <rect key="frame" x="0.0" y="64" width="320" height="788"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="SQg-AO-jEM" id="vs7-BJ-tPj"/>
+                            <outlet property="delegate" destination="SQg-AO-jEM" id="Ite-qf-RFL"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="All Annotations" id="OGu-o5-SeX"/>
+                    <connections>
+                        <segue destination="pbc-zX-HuG" kind="push" identifier="segueToAnnotationDetails" id="4OD-MC-fq2"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zrt-qp-5AL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2777" y="-586"/>
+        </scene>
+        <!--Annot Detail View Controller-->
+        <scene sceneID="Lae-51-j1g">
+            <objects>
+                <viewController id="pbc-zX-HuG" customClass="AnnotDetailViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jaV-5m-YCG">
+                        <rect key="frame" x="0.0" y="64" width="320" height="788"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ZK9-eB-w8r">
+                                <rect key="frame" x="0.0" y="184" width="320" height="604"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="p4l-fW-HNQ">
+                                <rect key="frame" x="0.0" y="106" width="320" height="77"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="KdN-8Q-5eR">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="108"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ENj-uc-yFH"/>
+                    <connections>
+                        <outlet property="annotView" destination="KdN-8Q-5eR" id="nfV-2D-aBk"/>
+                        <outlet property="commentView" destination="ZK9-eB-w8r" id="d8c-Ea-rEO"/>
+                        <outlet property="contentView" destination="p4l-fW-HNQ" id="tlK-na-3qe"/>
+                        <segue destination="tfg-Jt-cKI" kind="push" identifier="segueToCommentDetails" id="8eG-YR-gta"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oJz-fD-mGg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3208" y="-579"/>
+        </scene>
+        <!--Comment Detail View Controller-->
+        <scene sceneID="0L3-vG-zbx">
+            <objects>
+                <viewController id="tfg-Jt-cKI" customClass="CommentDetailViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vWw-Ev-cYQ">
+                        <rect key="frame" x="0.0" y="64" width="320" height="788"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="abO-nv-eht">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="708"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="PUa-N0-ru3"/>
+                    <connections>
+                        <outlet property="commentView" destination="abO-nv-eht" id="u16-5r-jx5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SAH-hg-KfP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3624" y="-682"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="kdn-ua-2HE">
+            <objects>
+                <navigationController id="TiU-Pc-3r3" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="im4-i3-9QF">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="SQg-AO-jEM" kind="relationship" relationship="rootViewController" id="b2j-na-qeJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8NE-hc-zvT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2249" y="-586"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="fud-cD-ayQ">
+            <objects>
+                <splitViewController id="R2F-ud-9VX" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <connections>
+                        <segue destination="TiU-Pc-3r3" kind="relationship" relationship="masterViewController" id="ApQ-mO-uIl"/>
+                        <segue destination="ye6-kl-cpM" kind="relationship" relationship="detailViewController" id="vQy-zx-E34"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nq2-7m-LKZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1265" y="-118"/>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="AnnotDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AnnotDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="annotView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="commentView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="contentView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="CommentDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CommentDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="commentView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="DetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loadPhoto:"/>
+                <relationship kind="action" name="takePhoto:"/>
+                <relationship kind="outlet" name="bookView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+        <class className="MasterViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MasterViewController.h"/>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>
