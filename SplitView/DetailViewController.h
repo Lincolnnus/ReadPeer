@@ -17,10 +17,6 @@
 
 @end
 @interface DetailViewController : UIViewController<UISplitViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
-{
-    tesseract::TessBaseAPI *tess;
-    MBProgressHUD *progressHud;
-}
 
 @property (nonatomic, strong) UIPopoverController *popoverController;
 @property (nonatomic, strong) UIPopoverController *masterPopoverController;

@@ -142,13 +142,11 @@
      [self performSelectorOnMainThread:@selector(ocrProcessingFinished:)
      withObject:[tesseract recognizedText]
      waitUntilDone:NO];
-   /* [self performSelectorOnMainThread:@selector(ocrProcessingFinished:)
-                           withObject:@"haha"
-                        waitUntilDone:NO];*/
 }
 
 - (void)ocrProcessingFinished:(NSString *)result
 {
+    //EFFECT: search annotations on the cloud after getting the text from OCR
     NSURL *aUrl = [NSURL URLWithString:@"http://54.251.118.233/annot/index.php/annotation"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:aUrl
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -207,8 +205,10 @@
     two.annot = @"How to implement the circle-rectangle interaction?";
     two.aid =@"2";
     [annotations addObject:two];
-    [delegate updateAnnotations:annotations];
-    NSLog(@"success get annotations");
+    
+    
+    [delegate updateAnnotations:annotations];//update the annotations
+    NSLog(@"success update annotations");
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
