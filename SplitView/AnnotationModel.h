@@ -12,5 +12,6 @@
 
 @property (nonatomic,copy) NSString *content;
 @property (nonatomic,copy) NSString *annot;
+@property (nonatomic,copy) NSString *aid;
 
 @end

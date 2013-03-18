@@ -42,12 +42,13 @@
     AnnotationModel *one = [[AnnotationModel alloc] init];
     one.content = @"The collision between wolf breath and a straw block results in the destruction of the straw block";
     one.annot = @"This is interesting";
+    one.aid =@"1";
     
     [annotations addObject:one];
      AnnotationModel *two = [[AnnotationModel alloc] init];
     two.content = @"Integrate the physics engine in the game project";
     two.annot = @"How to implement the circle-rectangle interaction?";
-    
+    two.aid =@"2";
     [annotations addObject:two];
 
     

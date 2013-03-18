@@ -10,6 +10,6 @@
 
 @implementation AnnotationModel
 
-@synthesize content,annot;
+@synthesize content,annot,aid;
 
 @end
