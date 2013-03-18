@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "AnnotationModel.h" 
 #import "AnnotDetailViewController.h"
+#import "DetailViewController.h"
 
-@interface MasterViewController : UITableViewController
+@interface MasterViewController : UITableViewController<AnnotationDelegate>
 
+@property (nonatomic,strong)AnnotDetailViewController *annotController;
+@property (nonatomic) NSMutableArray *annotations;
 @end

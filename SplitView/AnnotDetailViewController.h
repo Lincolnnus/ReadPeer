@@ -16,4 +16,6 @@
 @property (strong, nonatomic) IBOutlet UITextView *annotView;
 @property (nonatomic) AnnotationModel* currentAnnot;
 @property (nonatomic) NSMutableArray *comments;
+
+-(void)updateComments:(NSMutableArray*)cms;
 @end

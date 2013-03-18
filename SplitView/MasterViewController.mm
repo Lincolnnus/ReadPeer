@@ -10,9 +10,9 @@
 #import "AnnotationModel.h"
 
 @implementation MasterViewController
-{
-    NSMutableArray *annotations;
-}
+
+@synthesize annotController;
+@synthesize annotations;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -38,20 +38,6 @@
     [super viewDidLoad];
 
     annotations = [[NSMutableArray alloc] init];
-    
-    AnnotationModel *one = [[AnnotationModel alloc] init];
-    one.content = @"The collision between wolf breath and a straw block results in the destruction of the straw block";
-    one.annot = @"This is interesting";
-    one.aid =@"1";
-    
-    [annotations addObject:one];
-     AnnotationModel *two = [[AnnotationModel alloc] init];
-    two.content = @"Integrate the physics engine in the game project";
-    two.annot = @"How to implement the circle-rectangle interaction?";
-    two.aid =@"2";
-    [annotations addObject:two];
-
-    
 }
 
 - (void)viewDidUnload
@@ -95,6 +81,12 @@
     return 1;
 }
 
+-(void)updateAnnotations:(NSMutableArray *)annots
+{
+    annotations = annots;
+    [self.tableView reloadData];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     /*[self.delegate didSelectCustomer:selectedCustomer];*/
@@ -109,20 +101,52 @@
     {
          NSIndexPath *selectedRowIndex = [self.tableView indexPathForSelectedRow];
          AnnotationModel *selectedAnnotation = [annotations objectAtIndex:[selectedRowIndex row]];
-       AnnotDetailViewController *annotController=[segue destinationViewController];
+        annotController=[segue destinationViewController];
         annotController.currentAnnot=selectedAnnotation;
-       /* NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
-        NSInteger rowNumber = selectedIndexPath.row;
+        NSURL *aUrl = [NSURL URLWithString:@"http://54.251.118.233/annot/index.php/annotation"];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:aUrl
+                                                               cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                           timeoutInterval:60.0];
         
-        AnnotationViewController *detailsTVC = [[segue destinationViewController] visibleViewController];*/
+        NSURLConnection *connection= [[NSURLConnection alloc] initWithRequest:request
+                                                                     delegate:self];
         
-       /* mySQLiteDB = (SQLiteDB *) [locationsArray objectAtIndex:rowNumber];
+        [request setHTTPMethod:@"GET"];
+        NSString *postString = [@"data=" stringByAppendingString:selectedAnnotation.aid];
+        [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
         
-        DetailsTVC *detailsTVC = [segue destinationViewController];
+        if (connection) {
+            // Create the NSMutableData to hold the received data.
+            // receivedData is an instance variable declared elsewhere.
+            NSLog(@"success get comments");
+            
+        } else {
+            [[[UIAlertView alloc] initWithTitle:@"Network Error"
+                                        message:@"Fail to Connect to the Server"
+                                       delegate:nil
+                              cancelButtonTitle:nil
+                              otherButtonTitles:@"OK", nil] show];
+            // Inform the user that the connection failed.
+        }
         
-        detailsTVC.detailsObject = mySQLiteDB;*/
     }
 }
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
+{
+    NSMutableArray *comments = [[NSMutableArray alloc] init];
+    
+    Comment *one = [[Comment alloc] init];
+    one.commentDetail = @"first comment";
+    
+    [comments addObject:one];
+    Comment *two = [[Comment alloc] init];
+    two.commentDetail = @"second comment";
+    
+    [comments addObject:two];
+    [annotController updateComments:comments];
+}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

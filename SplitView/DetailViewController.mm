@@ -10,19 +10,17 @@
 #import "Tesseract.h"
 
 @implementation DetailViewController
-{
-    UIPopoverController *masterPopoverController;
-    NSMutableArray *annotations;
-}
 
 
 @synthesize toolbar;
 @synthesize popoverController;
+@synthesize masterPopoverController;
 @synthesize selectedImg;
 @synthesize bookView;
 @synthesize spinner;
 @synthesize progressHud;
 @synthesize tess;
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -196,6 +194,21 @@
     for ( int i= 0; i < [annotations count]; i++){
         [self addAnnotation:annotations[i]];
     }*/
+    NSMutableArray *annotations = [[NSMutableArray alloc] init];
+    
+    AnnotationModel *one = [[AnnotationModel alloc] init];
+    one.content = @"The collision between wolf breath and a straw block results in the destruction of the straw block";
+    one.annot = @"This is interesting";
+    one.aid =@"1";
+    
+    [annotations addObject:one];
+    AnnotationModel *two = [[AnnotationModel alloc] init];
+    two.content = @"Integrate the physics engine in the game project";
+    two.annot = @"How to implement the circle-rectangle interaction?";
+    two.aid =@"2";
+    [annotations addObject:two];
+    [delegate updateAnnotations:annotations];
+    NSLog(@"success get annotations");
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

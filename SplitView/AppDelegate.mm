@@ -24,7 +24,12 @@
     {
         UISplitViewController *splitViewController = (UISplitViewController *) self.window.rootViewController;
         splitViewController.delegate = [splitViewController.viewControllers lastObject];
-    
+        DetailViewController *detailViewController =(DetailViewController *) [splitViewController.viewControllers lastObject];
+        
+        MasterViewController *masterViewController = (MasterViewController *) [[splitViewController.viewControllers objectAtIndex:0] topViewController];
+        
+        detailViewController.delegate = masterViewController;
+        
     }
     
     

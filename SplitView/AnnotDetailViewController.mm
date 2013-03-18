@@ -35,15 +35,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     comments = [[NSMutableArray alloc] init];
-    
-    Comment *one = [[Comment alloc] init];
-    one.commentDetail = @"first comment";
-    
-    [comments addObject:one];
-    Comment *two = [[Comment alloc] init];
-    two.commentDetail = @"second comment";
-    
-    [comments addObject:two];
     commentView.dataSource = self;
     commentView.delegate = self;
     contentView.text=currentAnnot.content;
@@ -89,21 +80,13 @@
         Comment *selectedComment = [comments objectAtIndex:[selectedRowIndex row]];
         CommentDetailViewController *commentController=[segue destinationViewController];
         commentController.currentComment=selectedComment;
-        //  [annotController setDetailElement:selectedCustomer];
-        /*  [[AnnotationViewController alloc]initWithObject:selectedCustomer];
-         annotController = [segue destinationViewController];
-         NSLog(@"haha%@",selectedCustomer.content);*/
-        /* NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
-         NSInteger rowNumber = selectedIndexPath.row;
-         
-         AnnotationViewController *detailsTVC = [[segue destinationViewController] visibleViewController];*/
-        
-        /* mySQLiteDB = (SQLiteDB *) [locationsArray objectAtIndex:rowNumber];
-         
-         DetailsTVC *detailsTVC = [segue destinationViewController];
-         
-         detailsTVC.detailsObject = mySQLiteDB;*/
     }
+}
+
+-(void)updateComments:(NSMutableArray*)cms
+{
+    comments = cms;
+    [commentView reloadData];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

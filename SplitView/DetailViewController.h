@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "AnnotationModel.h"
-#import "MasterViewController.h"
 #import "MBProgressHUD.h"
 #import "baseapi.h"
 
+@protocol AnnotationDelegate <NSObject>
+
+-(void) updateAnnotations:(NSMutableArray*) annots;
+
+@end
 @interface DetailViewController : UIViewController<UISplitViewControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 {
     tesseract::TessBaseAPI *tess;
@@ -19,12 +23,14 @@
 }
 
 @property (nonatomic, strong) UIPopoverController *popoverController;
+@property (nonatomic, strong) UIPopoverController *masterPopoverController;
 @property (nonatomic,strong) IBOutlet UIToolbar *toolbar;
 @property (nonatomic) UIImage *selectedImg;
 @property (nonatomic) tesseract::TessBaseAPI *tess;
 @property (strong, nonatomic) IBOutlet UIView *bookView;
 @property (nonatomic, strong) UIActivityIndicatorView *spinner;
 @property (nonatomic, strong) MBProgressHUD *progressHud;
+@property (nonatomic,retain) id<AnnotationDelegate> delegate;
 
 -(void)getAnnotations;
 @end
