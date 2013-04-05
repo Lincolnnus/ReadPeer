@@ -8,9 +8,9 @@
 #import "DetailViewController.h"
 #import "MasterViewController.h"
 #import "Tesseract.h"
-
+#import "AFJSONRequestOperation.h"
+#define SearchApiURL @"http://dbgpu.d1.comp.nus.edu.sg/xiaoli/ebook/api/search/"
 @implementation DetailViewController
-
 
 @synthesize toolbar;
 @synthesize popoverController;
@@ -147,7 +147,7 @@
 - (void)ocrProcessingFinished:(NSString *)result
 {
     //EFFECT: search annotations on the cloud after getting the text from OCR
-    NSURL *aUrl = [NSURL URLWithString:@"http://54.251.118.233/annot/index.php/annotation"];
+  /*  NSURL *aUrl = [NSURL URLWithString:@"http://localhost/~shaohuanli/bookannotation/api/search/"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:aUrl
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
@@ -156,17 +156,18 @@
                                                                  delegate:self];
     
     [request setHTTPMethod:@"GET"];
-    NSString *postString = [@"data=" stringByAppendingString:result];
+    NSString *postString = [@"" stringByAppendingString:result];
     [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
     
     if (connection) {
         // Create the NSMutableData to hold the received data.
         // receivedData is an instance variable declared elsewhere.
-        [[[UIAlertView alloc] initWithTitle:@"Tesseract Sample"
+        [[[UIAlertView alloc] initWithTitle:@"Recognized Texts"
          message:[NSString stringWithFormat:@"Recognized:\n%@", result]
          delegate:nil
          cancelButtonTitle:nil
          otherButtonTitles:@"OK", nil] show];
+        NSLog(@"%@",result);
         
     } else {
         [[[UIAlertView alloc] initWithTitle:@"Tesseract Sample"
@@ -175,41 +176,39 @@
                           cancelButtonTitle:nil
                           otherButtonTitles:@"OK", nil] show];
         // Inform the user that the connection failed.
-    }
+    }*/
+        //EFFECT: search annotations on the cloud after getting the text from OCR
+        NSString *escapedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(                          NULL,
+                                                                                                        (CFStringRef)result,                           NULL,                                  CFSTR("!*'();:@&=+$,/?%#[]"),                  kCFStringEncodingUTF8));
+        NSString *searchURL = [SearchApiURL stringByAppendingString:escapedString];
+        NSURL *url = [NSURL URLWithString:searchURL];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+            NSLog(@"json%@",JSON);
+            if ([JSON count] == 0) {
+                [[[UIAlertView alloc] initWithTitle:@"No Similar Annotations"
+                                            message:@"No Similar Annotations"
+                                           delegate:nil
+                                  cancelButtonTitle:nil
+                                  otherButtonTitles:@"OK", nil] show];
+            }
+            else{
+                NSMutableArray *annotations = [[NSMutableArray alloc] init];
+                for (int i = 0; i < [JSON count];i++)
+                {
+                    AnnotationModel *annot = [[AnnotationModel alloc] initWithJSON:JSON[i]];
+                    [annotations addObject:annot];
+                }
+                [delegate updateAnnotations:annotations];//update the annotations
+                NSLog(@"success update annotations");
+
+            }
+        } failure:nil];
+        
+        [operation start];
+
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
-{
-    // Append the new data to receivedData.
-    // receivedData is an instance variable declared elsewhere.
-    
-   // NSError *error = nil;
-    /*  NSString* decoded = [NSString stringWithUTF8String:(const char *)[data bytes]];
-     //NSString* decoded = [[NSString alloc] initWithData:data   encoding:NSUTF8StringEncoding];
-     decoded=[decoded stringByTrimmingCharactersInSet:[NSCharacterSet controlCharacterSet]];
-     id response =[NSJSONSerialization JSONObjectWithData:[decoded dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments|NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves error:&error];*/
-   /* annotations =[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments|NSJSONReadingMutableContainers|NSJSONReadingMutableLeaves error:&error];
-    for ( int i= 0; i < [annotations count]; i++){
-        [self addAnnotation:annotations[i]];
-    }*/
-    NSMutableArray *annotations = [[NSMutableArray alloc] init];
-    
-    AnnotationModel *one = [[AnnotationModel alloc] init];
-    one.content = @"The collision between wolf breath and a straw block results in the destruction of the straw block";
-    one.annot = @"This is interesting";
-    one.aid =@"1";
-    
-    [annotations addObject:one];
-    AnnotationModel *two = [[AnnotationModel alloc] init];
-    two.content = @"Integrate the physics engine in the game project";
-    two.annot = @"How to implement the circle-rectangle interaction?";
-    two.aid =@"2";
-    [annotations addObject:two];
-    
-    
-    [delegate updateAnnotations:annotations];//update the annotations
-    NSLog(@"success update annotations");
-}
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations

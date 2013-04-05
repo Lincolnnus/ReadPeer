@@ -12,4 +12,12 @@
 
 @synthesize commentDetail;
 
+-(id)initWithJSON: (NSDictionary *)json
+{
+    if (self = [super init]) {
+        // Custom initialization
+        commentDetail = [json objectForKey:@"body"];
+    }
+    return self;
+}
 @end

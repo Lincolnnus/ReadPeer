@@ -8,6 +8,8 @@
 
 #import "MasterViewController.h"
 #import "AnnotationModel.h"
+#import "AFJSONRequestOperation.h"
+#define CommentApiURL @"http://dbgpu.d1.comp.nus.edu.sg/xiaoli/ebook/api/comments/"
 
 @implementation MasterViewController
 
@@ -85,13 +87,11 @@
 {
     annotations = annots;
     [self.tableView reloadData];
+    NSLog(@"here");
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*[self.delegate didSelectCustomer:selectedCustomer];*/
-    /*[self.navController pushViewController:animated:YES];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];*/
     [self performSegueWithIdentifier:@"segueToAnnotationDetails" sender:self];
 }
 
@@ -103,50 +103,24 @@
          AnnotationModel *selectedAnnotation = [annotations objectAtIndex:[selectedRowIndex row]];
         annotController=[segue destinationViewController];
         annotController.currentAnnot=selectedAnnotation;
-        NSURL *aUrl = [NSURL URLWithString:@"http://54.251.118.233/annot/index.php/annotation"];
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:aUrl
-                                                               cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                           timeoutInterval:60.0];
         
-        NSURLConnection *connection= [[NSURLConnection alloc] initWithRequest:request
-                                                                     delegate:self];
-        
-        [request setHTTPMethod:@"GET"];
-        NSString *postString = [@"data=" stringByAppendingString:selectedAnnotation.aid];
-        [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
-        
-        if (connection) {
-            // Create the NSMutableData to hold the received data.
-            // receivedData is an instance variable declared elsewhere.
-            NSLog(@"success get comments");
-            
-        } else {
-            [[[UIAlertView alloc] initWithTitle:@"Network Error"
-                                        message:@"Fail to Connect to the Server"
-                                       delegate:nil
-                              cancelButtonTitle:nil
-                              otherButtonTitles:@"OK", nil] show];
-            // Inform the user that the connection failed.
-        }
+        NSURL *url = [NSURL URLWithString:[CommentApiURL stringByAppendingString:selectedAnnotation.aid]];
+                      NSURLRequest *request = [NSURLRequest requestWithURL:url];
+                      
+                      AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+            NSMutableArray *comments = [[NSMutableArray alloc] init];
+            for (int i = 0; i < [JSON count];i++)
+            {
+                Comment *cms = [[Comment alloc] initWithJSON:JSON[i]];
+                [comments addObject:cms];
+            }
+            [annotController updateComments:comments];
+        } failure:nil];
+                      
+                      [operation start];
         
     }
 }
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
-{
-    NSMutableArray *comments = [[NSMutableArray alloc] init];
-    
-    Comment *one = [[Comment alloc] init];
-    one.commentDetail = @"first comment";
-    
-    [comments addObject:one];
-    Comment *two = [[Comment alloc] init];
-    two.commentDetail = @"second comment";
-    
-    [comments addObject:two];
-    [annotController updateComments:comments];
-}
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -169,46 +143,6 @@
     cell.detailTextLabel.text= annotation.content;
     return cell;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Table view delegate
 
 

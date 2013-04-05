@@ -9,9 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface Comment : NSObject
-{
-}
 
 @property (nonatomic) NSString *commentDetail;
+-(id)initWithJSON: (NSDictionary *)json;
 
 @end
