@@ -276,10 +276,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF26FDB41730085E005CD9C6 /* iPhoneViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CF68DE4116F0F33F00A8E1AB /* MainStoryboard_iPhone.storyboard */,
+				CFCFC67416F3996B0076D956 /* iPhoneViewController.h */,
+				CFA22662170DDC1E008A2D93 /* commentView.xib */,
+				CFA2265C170DCA9D008A2D93 /* iPhoneTableListViewController.h */,
+				CFA2265D170DCA9E008A2D93 /* iPhoneTableListViewController.mm */,
+				CFA22657170DC051008A2D93 /* iPhoneTableView.xib */,
+				CFA2265F170DDC05008A2D93 /* CommentViewController.h */,
+				CFA22660170DDC05008A2D93 /* CommentViewController.mm */,
+				CFCFC67516F3996B0076D956 /* iPhoneViewController.mm */,
+			);
+			name = iPhoneViewControllers;
+			sourceTree = "<group>";
+		};
 		CF68DE1D16F0F33F00A8E1AB = {
 			isa = PBXGroup;
 			children = (
-				CF68DE2F16F0F33F00A8E1AB /* SplitView */,
+				CF68DE2F16F0F33F00A8E1AB /* ReadPeer */,
 				CF68DE2816F0F33F00A8E1AB /* Frameworks */,
 				CF68DE2716F0F33F00A8E1AB /* Products */,
 			);
@@ -305,27 +321,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CF68DE2F16F0F33F00A8E1AB /* SplitView */ = {
+		CF68DE2F16F0F33F00A8E1AB /* ReadPeer */ = {
 			isa = PBXGroup;
 			children = (
 				CFBED36716F4715E00614188 /* Libraries */,
-				CFBED36616F4713400614188 /* Classes */,
 				CFCFC67316F397B20076D956 /* iPadViewControllers */,
+				CF26FDB41730085E005CD9C6 /* iPhoneViewControllers */,
 				CF68DE3816F0F33F00A8E1AB /* AppDelegate.h */,
 				CF68DE3916F0F33F00A8E1AB /* AppDelegate.mm */,
-				CF68DE5B16F0FADF00A8E1AB /* MainStoryboard_iPad.storyboard */,
-				CF68DE4116F0F33F00A8E1AB /* MainStoryboard_iPhone.storyboard */,
 				CF68DE3016F0F33F00A8E1AB /* Supporting Files */,
 				CFCFC67216F397940076D956 /* Models */,
-				CFCFC67416F3996B0076D956 /* iPhoneViewController.h */,
-				CFA22662170DDC1E008A2D93 /* commentView.xib */,
-				CFA2265C170DCA9D008A2D93 /* iPhoneTableListViewController.h */,
-				CFA2265D170DCA9E008A2D93 /* iPhoneTableListViewController.mm */,
-				CFA22657170DC051008A2D93 /* iPhoneTableView.xib */,
-				CFA2265F170DDC05008A2D93 /* CommentViewController.h */,
-				CFA22660170DDC05008A2D93 /* CommentViewController.mm */,
-				CFCFC67516F3996B0076D956 /* iPhoneViewController.mm */,
 			);
+			name = ReadPeer;
 			path = SplitView;
 			sourceTree = "<group>";
 		};
@@ -569,6 +576,8 @@
 		CFBED36716F4715E00614188 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				CFBED36616F4713400614188 /* Classes */,
+				CFA2266A170E1336008A2D93 /* AFNetworking */,
 				CFBED2C716F46C9000614188 /* dependencies */,
 				CFBED36116F46D1000614188 /* tessdata */,
 			);
@@ -589,7 +598,7 @@
 		CFCFC67316F397B20076D956 /* iPadViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				CFA2266A170E1336008A2D93 /* AFNetworking */,
+				CF68DE5B16F0FADF00A8E1AB /* MainStoryboard_iPad.storyboard */,
 				CF68DE5816F0F90C00A8E1AB /* MasterViewController.h */,
 				CF68DE5916F0F90C00A8E1AB /* MasterViewController.mm */,
 				CF68DE4F16F0F6D000A8E1AB /* DetailViewController.h */,
