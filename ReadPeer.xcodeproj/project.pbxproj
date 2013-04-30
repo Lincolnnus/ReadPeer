@@ -17,15 +17,14 @@
 		CF68DE3E16F0F33F00A8E1AB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CF68DE3D16F0F33F00A8E1AB /* Default@2x.png */; };
 		CF68DE4016F0F33F00A8E1AB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CF68DE3F16F0F33F00A8E1AB /* Default-568h@2x.png */; };
 		CF68DE4316F0F33F00A8E1AB /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF68DE4116F0F33F00A8E1AB /* MainStoryboard_iPhone.storyboard */; };
-		CF68DE4916F0F33F00A8E1AB /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = CF68DE4816F0F33F00A8E1AB /* ViewController.mm */; };
 		CF68DE5116F0F6D000A8E1AB /* DetailViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = CF68DE5016F0F6D000A8E1AB /* DetailViewController.mm */; };
 		CF68DE5A16F0F90C00A8E1AB /* MasterViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = CF68DE5916F0F90C00A8E1AB /* MasterViewController.mm */; };
 		CF68DE5C16F0FADF00A8E1AB /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF68DE5B16F0FADF00A8E1AB /* MainStoryboard_iPad.storyboard */; };
 		CF7921CE16F3635E006878DD /* Comment.mm in Sources */ = {isa = PBXBuildFile; fileRef = CF7921CD16F3635D006878DD /* Comment.mm */; };
 		CF7921D116F3791A006878DD /* CommentDetailViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = CF7921D016F3791A006878DD /* CommentDetailViewController.mm */; };
 		CFA22658170DC052008A2D93 /* iPhoneTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFA22657170DC051008A2D93 /* iPhoneTableView.xib */; };
-		CFA2265E170DCA9E008A2D93 /* iPhoneTableListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA2265D170DCA9E008A2D93 /* iPhoneTableListViewController.m */; };
-		CFA22661170DDC05008A2D93 /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA22660170DDC05008A2D93 /* CommentViewController.m */; };
+		CFA2265E170DCA9E008A2D93 /* iPhoneTableListViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = CFA2265D170DCA9E008A2D93 /* iPhoneTableListViewController.mm */; };
+		CFA22661170DDC05008A2D93 /* CommentViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = CFA22660170DDC05008A2D93 /* CommentViewController.mm */; };
 		CFA22663170DDC1E008A2D93 /* commentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFA22662170DDC1E008A2D93 /* commentView.xib */; };
 		CFA2267E170E1336008A2D93 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA2266C170E1336008A2D93 /* AFHTTPClient.m */; };
 		CFA2267F170E1336008A2D93 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA2266E170E1336008A2D93 /* AFHTTPRequestOperation.m */; };
@@ -64,8 +63,6 @@
 		CF68DE3D16F0F33F00A8E1AB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		CF68DE3F16F0F33F00A8E1AB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		CF68DE4216F0F33F00A8E1AB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		CF68DE4716F0F33F00A8E1AB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		CF68DE4816F0F33F00A8E1AB /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		CF68DE4F16F0F6D000A8E1AB /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		CF68DE5016F0F6D000A8E1AB /* DetailViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DetailViewController.mm; sourceTree = "<group>"; };
 		CF68DE5816F0F90C00A8E1AB /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
@@ -77,9 +74,9 @@
 		CF7921D016F3791A006878DD /* CommentDetailViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CommentDetailViewController.mm; sourceTree = "<group>"; };
 		CFA22657170DC051008A2D93 /* iPhoneTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iPhoneTableView.xib; sourceTree = "<group>"; };
 		CFA2265C170DCA9D008A2D93 /* iPhoneTableListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iPhoneTableListViewController.h; sourceTree = "<group>"; };
-		CFA2265D170DCA9E008A2D93 /* iPhoneTableListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iPhoneTableListViewController.m; sourceTree = "<group>"; };
+		CFA2265D170DCA9E008A2D93 /* iPhoneTableListViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = iPhoneTableListViewController.mm; sourceTree = "<group>"; };
 		CFA2265F170DDC05008A2D93 /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
-		CFA22660170DDC05008A2D93 /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
+		CFA22660170DDC05008A2D93 /* CommentViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CommentViewController.mm; sourceTree = "<group>"; };
 		CFA22662170DDC1E008A2D93 /* commentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = commentView.xib; sourceTree = "<group>"; };
 		CFA2266B170E1336008A2D93 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		CFA2266C170E1336008A2D93 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
@@ -282,8 +279,6 @@
 		CF68DE1D16F0F33F00A8E1AB = {
 			isa = PBXGroup;
 			children = (
-				CFA22689170EBC1E008A2D93 /* MobileCoreServices.framework */,
-				CFA22687170EBC11008A2D93 /* SystemConfiguration.framework */,
 				CF68DE2F16F0F33F00A8E1AB /* SplitView */,
 				CF68DE2816F0F33F00A8E1AB /* Frameworks */,
 				CF68DE2716F0F33F00A8E1AB /* Products */,
@@ -301,6 +296,8 @@
 		CF68DE2816F0F33F00A8E1AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CFA22689170EBC1E008A2D93 /* MobileCoreServices.framework */,
+				CFA22687170EBC11008A2D93 /* SystemConfiguration.framework */,
 				CF68DE2916F0F33F00A8E1AB /* UIKit.framework */,
 				CF68DE2B16F0F33F00A8E1AB /* Foundation.framework */,
 				CF68DE2D16F0F33F00A8E1AB /* CoreGraphics.framework */,
@@ -323,10 +320,10 @@
 				CFCFC67416F3996B0076D956 /* iPhoneViewController.h */,
 				CFA22662170DDC1E008A2D93 /* commentView.xib */,
 				CFA2265C170DCA9D008A2D93 /* iPhoneTableListViewController.h */,
-				CFA2265D170DCA9E008A2D93 /* iPhoneTableListViewController.m */,
+				CFA2265D170DCA9E008A2D93 /* iPhoneTableListViewController.mm */,
 				CFA22657170DC051008A2D93 /* iPhoneTableView.xib */,
 				CFA2265F170DDC05008A2D93 /* CommentViewController.h */,
-				CFA22660170DDC05008A2D93 /* CommentViewController.m */,
+				CFA22660170DDC05008A2D93 /* CommentViewController.mm */,
 				CFCFC67516F3996B0076D956 /* iPhoneViewController.mm */,
 			);
 			path = SplitView;
@@ -595,8 +592,6 @@
 				CFA2266A170E1336008A2D93 /* AFNetworking */,
 				CF68DE5816F0F90C00A8E1AB /* MasterViewController.h */,
 				CF68DE5916F0F90C00A8E1AB /* MasterViewController.mm */,
-				CF68DE4716F0F33F00A8E1AB /* ViewController.h */,
-				CF68DE4816F0F33F00A8E1AB /* ViewController.mm */,
 				CF68DE4F16F0F6D000A8E1AB /* DetailViewController.h */,
 				CF68DE5016F0F6D000A8E1AB /* DetailViewController.mm */,
 				CFDA4F5716F3090200ADC65F /* AnnotDetailViewController.h */,
@@ -680,7 +675,6 @@
 			files = (
 				CF68DE3616F0F33F00A8E1AB /* main.m in Sources */,
 				CF68DE3A16F0F33F00A8E1AB /* AppDelegate.mm in Sources */,
-				CF68DE4916F0F33F00A8E1AB /* ViewController.mm in Sources */,
 				CF68DE5116F0F6D000A8E1AB /* DetailViewController.mm in Sources */,
 				CF68DE5A16F0F90C00A8E1AB /* MasterViewController.mm in Sources */,
 				CFDA4F5916F3090200ADC65F /* AnnotDetailViewController.mm in Sources */,
@@ -690,8 +684,8 @@
 				CFCFC67616F3996B0076D956 /* iPhoneViewController.mm in Sources */,
 				CFBED21D16F45FBA00614188 /* Tesseract.mm in Sources */,
 				CFBED36516F46D9100614188 /* MBProgressHUD.mm in Sources */,
-				CFA2265E170DCA9E008A2D93 /* iPhoneTableListViewController.m in Sources */,
-				CFA22661170DDC05008A2D93 /* CommentViewController.m in Sources */,
+				CFA2265E170DCA9E008A2D93 /* iPhoneTableListViewController.mm in Sources */,
+				CFA22661170DDC05008A2D93 /* CommentViewController.mm in Sources */,
 				CFA2267E170E1336008A2D93 /* AFHTTPClient.m in Sources */,
 				CFA2267F170E1336008A2D93 /* AFHTTPRequestOperation.m in Sources */,
 				CFA22680170E1336008A2D93 /* AFImageRequestOperation.m in Sources */,

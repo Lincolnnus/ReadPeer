@@ -9,7 +9,7 @@
 #import "MasterViewController.h"
 #import "AnnotationModel.h"
 #import "AFJSONRequestOperation.h"
-#define CommentApiURL @"http://dbgpu.d1.comp.nus.edu.sg/xiaoli/ebook/api/comments/"
+#define CommentApiURL @"http://readpeer.com/api/comments/"
 
 @implementation MasterViewController
 
@@ -87,7 +87,6 @@
 {
     annotations = annots;
     [self.tableView reloadData];
-    NSLog(@"here");
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

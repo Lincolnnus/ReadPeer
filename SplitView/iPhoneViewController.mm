@@ -9,7 +9,7 @@
 #import "iPhoneViewController.h"
 #import "iPhoneTableListViewController.h"
 #import "AFJSONRequestOperation.h"
-#define SearchApiURL @"http://dbgpu.d1.comp.nus.edu.sg/xiaoli/ebook/api/search/"
+#define SearchApiURL @"http://readpeer.com/api/search/"
 @interface iPhoneViewController ()
 
 @end

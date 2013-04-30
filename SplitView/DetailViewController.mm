@@ -9,7 +9,7 @@
 #import "MasterViewController.h"
 #import "Tesseract.h"
 #import "AFJSONRequestOperation.h"
-#define SearchApiURL @"http://dbgpu.d1.comp.nus.edu.sg/xiaoli/ebook/api/search/"
+#define SearchApiURL @"http://readpeer.com/api/search/"
 @implementation DetailViewController
 
 @synthesize toolbar;
@@ -178,13 +178,19 @@
         // Inform the user that the connection failed.
     }*/
         //EFFECT: search annotations on the cloud after getting the text from OCR
+    
+    [[[UIAlertView alloc] initWithTitle:@"Recognized Texts"
+                                message:[NSString stringWithFormat:@"Recognized:\n%@", result]
+                               delegate:nil
+                      cancelButtonTitle:nil
+                      otherButtonTitles:@"OK", nil] show];
+
         NSString *escapedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(                          NULL,
                                                                                                         (CFStringRef)result,                           NULL,                                  CFSTR("!*'();:@&=+$,/?%#[]"),                  kCFStringEncodingUTF8));
         NSString *searchURL = [SearchApiURL stringByAppendingString:escapedString];
         NSURL *url = [NSURL URLWithString:searchURL];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-            NSLog(@"json%@",JSON);
             if ([JSON count] == 0) {
                 [[[UIAlertView alloc] initWithTitle:@"No Similar Annotations"
                                             message:@"No Similar Annotations"

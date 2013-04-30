@@ -10,7 +10,7 @@
 #import "AnnotationModel.h"
 #import "Comment.h"
 #import "AFJSONRequestOperation.h"
-#define CommentApiURL @"http://dbgpu.d1.comp.nus.edu.sg/xiaoli/ebook/api/comments/"
+#define CommentApiURL @"http://readpeer.com/api/comments/"
 @interface CommentViewController ()
 
 @end
@@ -37,10 +37,8 @@
     [contentView setTextColor:[UIColor grayColor]];
     [annotView setFont:[UIFont boldSystemFontOfSize:25]];
     annotView.text=selectedAnnotation.annot;
-    
     NSURL *url = [NSURL URLWithString:[CommentApiURL stringByAppendingString:currentAnnot.aid]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         comments = [[NSMutableArray alloc]init];
         for (int i = 0; i < [JSON count];i++)
@@ -48,6 +46,8 @@
             Comment *cms = [[Comment alloc] initWithJSON:JSON[i]];
             [comments addObject:cms];
         }
+        NSLog(@"%@",JSON);
+        [commentView reloadData];
     } failure:nil];
     
     [operation start];
